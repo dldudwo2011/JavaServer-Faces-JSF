@@ -1,0 +1,79 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+        xmlns:jsf="http://xmlns.jcp.org/jsf"
+        xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/jsf-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="Create Bill"/>
+
+    <ui:define name="maincontent">
+
+        <h1>Create Bill</h1>
+
+        <p:messages id="messages"/>
+
+        <h:form>
+            <p:focus context="panel"/>
+
+            <p:panel id="panel" header="Bill Details">
+
+                <div class="field">
+                    <label for="payeeName">Payee Name</label>
+                    <p:inputText
+                            id="payeeName"
+                            type="text"
+                            class="inputfield w-full"
+                            value="#{currentBillCreateController.newBill.payeeName}">
+                    </p:inputText>
+                </div>
+
+                <div class="field">
+                    <label for="amountDue">Amount Due</label>
+                    <p:inputText
+                            id="amountDue"
+                            type="number"
+                            class="inputfield w-full"
+                            value="#{currentBillCreateController.newBill.amountDue}">
+                    </p:inputText>
+                </div>
+
+                <div class="field">
+                    <label for="dueDate">Due Date</label>
+                    <p:inputText
+                            id="dueDate"
+                            type="date"
+                            class="inputfield w-full"
+                            value="#{currentBillCreateController.newBill.dueDate}">
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    </p:inputText>
+                </div>
+
+
+
+                <!-- TODO: Add input fields for the properties of the entity -->
+
+                <p:commandButton
+                        value="Create"
+                        icon="pi pi-save"
+                        action="#{currentBillCreateController.onCreateNew()}"
+                        update=":messages @form"
+                />
+
+            </p:panel>
+            <p:link id="backToListLink" outcome="index" value="Back to List">
+            </p:link>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
